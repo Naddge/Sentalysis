@@ -1,11 +1,16 @@
 version: '3.8'
 
 services:
-  backend:
+  web:
     build: .
     ports:
-      - "5000:5000"
+      - "5050:5000"
     volumes:
       - .:/app
     environment:
       - FLASK_ENV=development
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G

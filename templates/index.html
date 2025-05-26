@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Testo ed Emozioni</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Analisi Testo ed Emozioni da Immagine</h1>
+        
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Analizza</button>
+        </form>
+
+        {% if text %}
+        <div class="results">
+            <h2>Risultati:</h2>
+            <p><strong>Testo riconosciuto:</strong> {{ text }}</p>
+            <p><strong>Emozione predominante:</strong> {{ emotion.label }} ({{ "%.2f"|format(emotion.score * 100) }}%)</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
