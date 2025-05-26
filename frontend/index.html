@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image to Text & Emotion Detection</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .result { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Upload Image for Text & Emotion Analysis</h1>
+  <input type="file" id="imageInput" accept="image/*" />
+  <button onclick="processImage()">Analyze</button>
+
+  <div class="result">
+    <h3>Recognized Text:</h3>
+    <p id="recognizedText"></p>
+    <h3>Detected Emotion:</h3>
+    <p id="detectedEmotion"></p>
+  </div>
+
+  <script>
+    async function processImage() {
+      const fileInput = document.getElementById("imageInput");
+      if (!fileInput.files[0]) return alert("Please upload an image.");
+
+      const formData = new FormData();
+      formData.append("image", fileInput.files[0]);
+
+      try {
+        const response = await axios.post("http://localhost:5000/analyze", formData);
+        document.getElementById("recognizedText").textContent = response.data.text;
+        document.getElementById("detectedEmotion").textContent = response.data.emotion;
+      } catch (error) {
+        console.error(error);
+        alert("Error processing the image.");
+      }
+    }
+  </script>
+</body>
