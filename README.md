@@ -23,7 +23,7 @@ This repository contains a two-stage AI system that:
 
 ## 📊 Datasets Used
 
-* **HTR:** 
+* **OCR:** [OCR Dataset](https://www.kaggle.com/datasets/robikscube/textocr-text-extraction-from-images-dataset/) 
 * **Sentiment:** [Emotion Dataset](https://www.kaggle.com/datasets/nelgiriyewithana/emotions) 
 
 ## 📄 License
