@@ -1,65 +1,196 @@
+:root {
+    --primary: #4361ee;
+    --primary-light: #e0e7ff;
+    --error: #ef4444;
+    --error-light: #fee2e2;
+    --text: #1f2937;
+    --text-light: #6b7280;
+    --border: #e5e7eb;
+    --bg: #f9fafb;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
     margin: 0;
-    padding: 20px;
-    background-color: #f5f5f5;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--text);
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 640px;
+    margin: 2rem auto;
     background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 h1 {
-    color: #333;
-    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.5rem 0;
 }
 
-.upload-section {
+.subtitle {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.upload-form {
     display: flex;
-    gap: 10px;
-    margin: 20px 0;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
 }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
+.file-input-wrapper {
+    width: 100%;
+}
+
+.file-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background-color: var(--bg);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-button:hover {
-    background-color: #45a049;
+.file-label:hover {
+    background-color: #f3f4f6;
+    border-color: var(--primary-light);
 }
 
-.result-box {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    border-left: 4px solid #4CAF50;
+.file-label svg {
+    color: var(--text-light);
 }
 
-.hidden {
+#image-upload {
     display: none;
 }
 
-#loading {
-    text-align: center;
-    margin: 20px 0;
+.analyze-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.analyze-btn:hover {
+    background-color: #3a56d4;
+}
+
+.analyze-btn svg {
+    color: white;
+}
+
+.results {
+    margin-top: 2rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.results h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.result-card {
+    background-color: var(--bg);
+    padding: 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.result-card h3 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.result-text {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.emotion-result {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.emotion-label {
+    font-weight: 500;
+    min-width: 80px;
+}
+
+.score-bar {
+    flex-grow: 1;
+    height: 8px;
+    background-color: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 4px;
+}
+
+.score-value {
+    font-size: 0.875rem;
+    color: var(--text-light);
 }
 
 .error-message {
-    color: #d32f2f;
-    background-color: #fde0e0;
-    padding: 10px;
-    border-radius: 4px;
-    border-left: 4px solid #d32f2f;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: var(--error-light);
+    color: var(--error);
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+}
+
+.error-message svg {
+    flex-shrink: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.uploaded-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
 }

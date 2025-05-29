@@ -4,13 +4,9 @@ services:
   web:
     build: .
     ports:
-      - "5050:5000"
+      - "8080:8000"
     volumes:
       - .:/app
     environment:
       - FLASK_ENV=development
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 2G
+

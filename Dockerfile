@@ -13,8 +13,8 @@ COPY templates/ ./templates/
 # Installa le dipendenze
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Esponi la porta 5000 (porta predefinita di Flask)
-EXPOSE 5000
+# Esponi la porta 8000 (porta predefinita di Flask)
+EXPOSE 8000
 
 # Comando per avviare l'applicazione
 CMD ["python", "app.py"]

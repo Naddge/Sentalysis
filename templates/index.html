@@ -5,29 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analisi Testo ed Emozioni</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Analisi Testo ed Emozioni da Immagine</h1>
+        <header>
+            <h1>Text Recognition and Sentiment Analysis</h1>
+        </header>
         
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="image" accept="image/*" required>
-            <button type="submit">Analizza</button>
+        <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+            <div class="file-input-wrapper">
+                <label for="image-upload" class="file-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"></path>
+                        <line x1="16" y1="5" x2="22" y2="5"></line>
+                        <line x1="19" y1="2" x2="19" y2="8"></line>
+                        <circle cx="9" cy="9" r="2"></circle>
+                        <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                    </svg>
+                    <span id="file-name">Upload an image</span>
+                    <input type="file" id="image-upload" name="image" accept="image/*" required>
+                </label>
+            </div>
+            <button type="submit" class="analyze-btn">
+                <span>Analyze</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </button>
         </form>
 
         {% if text %}
         <div class="results">
-            <h2>Risultati:</h2>
-            <p><strong>Testo riconosciuto:</strong> {{ text }}</p>
-            <p><strong>Emozione predominante:</strong> {{ emotion.label }} ({{ "%.2f"|format(emotion.score * 100) }}%)</p>
+            <h2>Results</h2>
+            {% if image_url %}
+            <div class="result-card">
+                <h3>Uploaded Image</h3>
+                <img src="{{ image_url }}" alt="Uploaded Image" class="uploaded-image">
+            </div>
+            {% endif %}
+            <div class="result-card">
+                <h3>Text</h3>
+                <p class="result-text">{{ text }}</p>
+            </div>
+            <div class="result-card">
+                <h3>Sentiment</h3>
+                <div class="emotion-result">
+                    <span class="emotion-label">{{ emotion.label }}</span>
+                    <div class="score-bar">
+                        <div class="score-fill" style="width: {{ emotion.score * 100 }}%;"></div>
+                    </div>
+                    <span class="score-value">{{ "%.2f"|format(emotion.score * 100) }}%</span>
+                </div>
+            </div>
         </div>
         {% endif %}
 
         {% if error %}
-        <div class="error">
-            <p>{{ error }}</p>
+        <div class="error-message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span>{{ error }}</span>
         </div>
         {% endif %}
     </div>
+
+    <script>
+        document.getElementById('image-upload').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'Seleziona un\'immagine';
+            document.getElementById('file-name').textContent = fileName;
+        });
+    </script>
 </body>
 </html>
