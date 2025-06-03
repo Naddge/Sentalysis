@@ -1,4 +1,4 @@
-# 🧠 AI Pipeline: Handwritten Text Recognition + Sentiment Analysis
+# 🧠 Sentalysis: Sentence and Sentiment Analysis
 
 This repository contains a two-stage AI system that:
 

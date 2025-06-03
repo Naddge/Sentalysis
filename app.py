@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-# Carica i modelli all'avvio
+# load models
 try:
     ocr_pipeline = pipeline("image-to-text", model="nadchan/trocr-encoder-only")
     emotion_pipeline = pipeline("sentiment-analysis", model="nadchan/Sentalysis")
@@ -39,14 +39,13 @@ def upload():
         image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(image_path)
 
-        # Leggi l'immagine per OCR
         image = Image.open(image_path)
 
-        # Estrai il testo
+        # extract text
         ocr_result = ocr_pipeline(image)
         text = ocr_result[0]["generated_text"]
 
-        # Analizza l'emozione
+        # categorize
         emotion_result = emotion_pipeline(text)[0]
 
         label_map = {
