@@ -54,10 +54,10 @@ processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
 def preprocess(example):
     encoding = processor(
         images=example["image"],
-        text_target=example["IDENTITY"],  # <-- IMPORTANTE!
+        text_target=example["IDENTITY"],  
         padding="max_length",
         truncation=True,
-        max_length=16,  # puoi aumentare se i nomi sono lunghi
+        max_length=16,  
         return_tensors="pt"
     )
     return {
