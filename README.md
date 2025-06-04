@@ -10,14 +10,14 @@ This repository contains a two-stage AI system that:
 ### ✍️ Handwritten Text Recognition
 
 * Converts images of handwritten text to machine-readable strings.
-* Model used:
+* Model used: \[ssarkar445/handwriting-recognitionocr\]
 * Input: `.jpg` or `.png` images
 * Output: Extracted plain text
 
 ### 💬 Sentiment Analysis
 
 * Classifies text as **positive**, **neutral**, or **negative**.
-* Model used: \[google-bert/bert-base-uncased]
+* Model used: \[google-bert/bert-base-uncased\]
 * Input: Extracted text
 * Output: Sentiment label
 
@@ -28,10 +28,5 @@ This repository contains a two-stage AI system that:
 
 ## 📄 License
 
-This project is released under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## 🙋‍♀️ Author & Contributions
-
-Developed by **Nadia Ge**
-Feel free to open issues or pull requests for suggestions, improvements, or bug reports.
+This project is released under the MIT License.
 
